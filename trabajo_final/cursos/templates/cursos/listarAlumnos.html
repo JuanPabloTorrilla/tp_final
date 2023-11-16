@@ -1,0 +1,37 @@
+{% extends 'cursos/base.html' %}
+
+{% block content %}
+    {% if alumnos %}
+    <div class="container text-center mt-5">
+        <div class="col md-5">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Correo electrónico</th>
+                        </tr>
+                        {% for alumno in alumnos %}
+                        <tr>
+                            <td><a href="/cursos/obtenerAlumno/{{ alumno.DNI }}">{{ alumno.Nombre }}</a></td>
+                            <td>{{ alumno.Apellido }}</td>
+                            <td>{{ alumno.DNI }}</td>
+                            <td>{{ alumno.Telefono }}</td>
+                            <td>{{ alumno.Correo_electronico }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+   
+                    {% else %}
+                    <p>No hay alumnos registrados.</p>
+                    {% endif %}
+                    <a href="/cursos/cargarAlumnos" type="button" class="btn btn-primary mx-auto">Cargar Alumnos</a>
+                    <!--  -->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

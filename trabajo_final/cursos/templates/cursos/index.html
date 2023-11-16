@@ -1,0 +1,40 @@
+{% extends 'cursos/base.html' %}
+
+{% block content %}
+<div class="card text-center mx-auto">
+    <div class="card-header">
+        <h2>Gestión de Alumnos</h2>
+    </div>
+    <div class="container d-flex flex-row">
+        <div class="card-body d-flex flex-column">
+            <a href="/cursos/cargarAlumnos" class="btn btn-primary">Cargar alumnos por CSV</a>
+            <a href="/cursos/listarAlumnos" class="btn btn-primary my-2">Listar Alumnos</a>
+            <a href="/cursos/asignarCurso" class="btn btn-primary">Asignar curso</a>
+        </div>
+        <div class="card-body">
+            <form action="/cursos/alumno" method="get">
+                <h4>Exportar a csv</h4>
+                <div class="mb-3">
+                    <label for="dni">Ingrese el DNI del alumno</label>
+                    <input class="form-control" name="dni" type="number">
+                </div>
+                <button class="btn btn-primary" type="submit">Consultar</button>
+            </form>
+        </div>
+        <div class="card-body">
+            <form action="/cursos/alumnosPorCurso" method="get">
+                <h4>Alumnos por curso</h4>
+                <div class="mb-3">
+                    <select class="form-select" name="id">
+                        <option value="0">Seleccione un curso</option>
+                        {% for curso in cursos %}
+                        <option value="{{ curso.id }}">{{ curso.Nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Consultar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}

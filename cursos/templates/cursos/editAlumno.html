@@ -1,0 +1,50 @@
+{% extends 'cursos/base.html' %}
+{% block content %}
+    {% if alumno %}
+    <table class="table table-bordered">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Teléfono</th>
+          <th>Correo electrónico</th>
+          <th>Curso</th>
+          <th>Banda horaria</th>
+          <th>Acciones</th>
+        </tr>
+    </table>
+    <div class="container p-4">
+        <div class="row">
+            <div class="card">
+                    <form action="/cursos/modificarAlumno/{{alumno.DNI}}" method="POST">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre del alumno</label>
+                                <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="nombreHelp" value="{{alumno.Nombre}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="apellido" class="form-label">Nombre del alumno</label>
+                                <input type="text" class="form-control" name="apellido" id="apellido" aria-describedby="apellidoHelp" value="{{alumno.Apellido}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="DNI" class="form-label">DNI</label>
+                                <input type="number" class="form-control" name="dni" id="DNI" aria-describedby="DNIHelp" value="{{alumno.DNI}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Nombre del alumno</label>
+                                <input type="tel" class="form-control" name="telefono" id="telefono" aria-describedby="telefonoHelp" value="{{alumno.Telefono}}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="correo_electronico" class="form-label">Nombre del alumno</label>
+                                <input type="text" class="form-control" name="correo_electronico" id="correo_electronico" aria-describedby="correo_electronicoHelp" value="{{alumno.Correo_electronico}}">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+            </div>
+            </div>
+    {%endif%}
+{%endblock%}

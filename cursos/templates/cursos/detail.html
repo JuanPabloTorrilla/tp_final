@@ -1,0 +1,32 @@
+{% extends 'cursos/base.html' %}
+
+{% block content %}
+    {% if alumno %}
+    <table class="table table-bordered">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>DNI</th>
+          <th>Teléfono</th>
+          <th>Correo electrónico</th>
+          <th>Curso</th>
+          <th>Banda horaria</th>
+          <th>Acciones</th>
+        </tr>
+          <tr>
+            <td>{{ alumno.Nombre }}</td>
+            <td>{{ alumno.Apellido }}</td>
+            <td>{{ alumno.DNI }}</td>
+            <td>{{ alumno.Telefono }}</td>
+            <td>{{ alumno.Correo_electronico }}</td>
+            <td>{{ alumno.Curso.Nombre }}</td>
+            <td>{{ alumno.Curso.BandaHoraria.Nombre }}</td>
+            <td>
+                <a href="/cursos/modificarAlumno/{{ alumno.DNI }}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+                <a href="/cursos/eliminarAlumno/{{ alumno.DNI }}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                <a href="/cursos/alumno/{{ alumno.DNI }}" class="btn btn-success"><i class="bi bi-filetype-csv"></i></i></a>
+            </td>
+          </tr>
+      </table>
+    {%endif%}
+{%endblock%}

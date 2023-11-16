@@ -1,0 +1,44 @@
+{% extends 'cursos/base.html' %}
+
+{% block content %}
+<div class="col md-5">
+    <div class="card">
+        <div class="card-body">
+            {% if alumnos %}
+            <table class="table table-bordered">
+                <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Curso</th>
+                </tr>
+                {% for alumno in alumnos %}
+                <form action="/cursos/asignarCurso" method="POST">
+                    <tr>
+                        <td>{{ alumno.Nombre }}</td>
+                        <td>{{ alumno.Apellido }}</td>
+                        <td><input class="border border-0" type="number" value="{{alumno.DNI}}" name="dni" readonly></td>
+                        <td>
+                            <select class="form-select" name="id">
+                                <option value="None" selected>Seleccione un curso</option>
+                                {% for curso in cursos %}
+                                <option value="{{ curso.id }}">{{ curso.Nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <button class="btn btn-primary" type="submit">Asignar</button>
+                        </td>
+                    </tr>
+                </form>
+                {% endfor %}
+            </table>
+            {% else %}
+            <p>No hay alumnos registrados.</p>
+            {% endif %}
+            <a href="/cursos/cargarAlumnos" type="button" class="btn btn-primary mx-auto">Cargar Alumnos</a>
+            <!--  -->
+        </div>
+    </div>
+</div>
+{%endblock%}
